@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  
+ java_apps2:
+   container_name: java_apps2
+   image: crud-javaxd:1.0   
+   build: .
+   ports:
+     - 8080:8080
+   environment:
+     - DATABASE_URL=jdbc:postgresql://java_dbs2:5432/pgDAW
+     - DATABASE_USERNAME=postgres
+     - DATABASE_PASSWORD=123456
+   depends_on:
+     - java_dbs2
+ java_dbs2:
+   container_name: java_dbs2
+   image: postgres:latest
+   ports:
+     - 5432:5432
+   environment:
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: 123456
+     POSTGRES_DB: pgDAW
+
+  
